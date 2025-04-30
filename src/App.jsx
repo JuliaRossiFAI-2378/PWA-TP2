@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 import Home from './pages/Home/Home'
-import Header from './components/Header/Header'
-import Aaa from './components/test'
+import { BrowserRouter, Routes, Route } from 'react-router'
 
 function App() {
   return (
-    <Home/>
+    <BrowserRouter>
+      <Routes>
+        <Route path={paths.home} element={<Home />} />
+        <Route path={paths.details} element={<Details />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
