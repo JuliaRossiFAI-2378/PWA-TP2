@@ -1,0 +1,58 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #648cb9;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  user-select: none; /*no lo parece pero evita que doble click te seleccione toda la pantalla*/
+}
+
+.slider:hover {
+  background-color: #75a3d9;
+}
+
+
+.sliderButton {
+  background-color: #fde047;
+  border-radius: 5px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  user-select: none;
+}
+
+.translate {
+  transform: translateX(36px);
+  background-color: #374151;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+

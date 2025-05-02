@@ -4,18 +4,23 @@ import { useEffect, useState } from "react";
 import Background from '../../components/Background/Background.jsx';
 import Card from '../../components/Card/Card.jsx'
 import getAllPokemon from '../../services/getAllPokemon.js';
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '../../i18n.js';
+
 
 const Home = () =>{
     const [listaPokemon, setListaPokemon] = useState(null);
-
+    const { t } = useTranslation()
     useEffect(()=>{
         getAllPokemon().then((datos)=>{setListaPokemon(datos.results)})
     }, [])
 
+
     return(//mx-auto en el contenedor nos puede causar problemas con alineacion despues, tener en cuenta
         <div className="min-h-screen flex flex-col">
-        <Header />
+        <Header/>
         <Background />
+            <p>{ t ('textito')}</p>
             <div className="flex-grow flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row border-x-2">
                 {listaPokemon!=null ?
                 listaPokemon.map(pokemon => (

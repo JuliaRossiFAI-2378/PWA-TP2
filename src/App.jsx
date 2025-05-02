@@ -3,14 +3,17 @@ import './App.css'
 import Home from './pages/Home/Home'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import paths from './paths/paths'
-import Details from './pages/Details/Details'
+import { useTranslation } from 'react-i18next'
+import i18n from './i18n'
 
 function App() {
+
+
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path={paths.home} element={<Home />} />
-        <Route path={paths.details} element={<Details />} />
       </Routes>
     </BrowserRouter>
   )

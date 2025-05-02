@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
+import Idioma from '../Idioma/Idioma.jsx'
+import { useTranslation, Trans } from "react-i18next";
+import i18n from "../../i18n.js";
+import logo from '../../assets/logo.svg'
+import logohover from '../../assets/logohover.svg'
 
 const Header = () => {
     //esto es super innecesario pero no me resisti
   const [scrolling, setScrolling] = useState(false);
+  const [imagenLogo, setImagenLogo] = useState(logo);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolling(window.scrollY > 0);
@@ -10,6 +17,16 @@ const Header = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  const { t } = useTranslation();
+
+  const logoMouseEnter = () =>{
+    setImagenLogo(logohover)
+  }
+  const logoMouseLeave = () =>{
+    setImagenLogo(logo)
+  }
+
+
 
   return (
     <div
@@ -18,16 +35,14 @@ const Header = () => {
           ? "bg-blue-300"
           : "bg-[rgba(122,204,247,0.2)]"}`}
     >
-      <h1 className="text-2xl font-bold text-gray-700 hover:text-yellow-300 cursor-pointer">
-        nombre/logo
-      </h1>
+      <img onMouseEnter={logoMouseEnter} onMouseLeave={logoMouseLeave} className="h-10 scale-200 origin-left overflow-visible select-none ml-0 sm:ml-4 md:ml-8 lg:ml-12 cursor-pointer" src={imagenLogo} />
       <nav className="text-xl">
         <ul className="flex space-x-4">
           <li>
-            <a className="hover:text-yellow-300 cursor-pointer">cambiar idioma</a>
+            <a className="hover:text-yellow-300 cursor-pointer">favoritos</a>
           </li>
           <li>
-            <a className="hover:text-yellow-300 cursor-pointer">favoritos</a>
+              <Idioma/>
           </li>
         </ul>
       </nav>
