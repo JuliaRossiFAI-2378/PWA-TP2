@@ -5,6 +5,8 @@ import favoritono from '../../assets/favoritono.png'
 import favorito from '../../assets/favorito.png'
 import Button from '../Button/Button.jsx'
 import getPokemon from "../../services/getPokemon.js";
+import { NavLink } from "react-router";
+import paths from "../../paths/paths.js";
 
 const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
     const [pokemon, setPokemon] = useState(null);
@@ -33,8 +35,8 @@ const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
     }
 
     useEffect(()=>{
-        getPokemon(pokereferencia.name).then((datos)=>{setPokemon(datos)
-        })
+        const id = pokereferencia.name;
+        getPokemon({id}).then((datos)=>{setPokemon(datos)})
     }, [])
 
 
@@ -60,7 +62,9 @@ const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
                 <p><span className="font-bold text-gray-700" >Altura: </span><span>{pokemon ? pokemon.height /10 : "Cargando..."} mts </span></p>
                 <p><span className="font-bold text-gray-700" >Peso: </span><span>{pokemon ? pokemon.weight /10 : "Cargando..."}kgs </span></p>
             </div>
-            <Button texto={"Mas Información"} estilo={pokemon?"bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer": "invisible"}  />
+            <NavLink to={`/Details/${pokemon ? pokemon.id : '' }`}>
+                <Button texto={"Mas Información"} estilo={pokemon?"bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer": "invisible"}  />
+            </NavLink>
         </div>)
     
 }
