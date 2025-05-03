@@ -43,7 +43,7 @@ const Header = () => {
         <ul className="flex space-x-4">
           <li>
             <NavLink to={paths.favorites}>
-              <span className="hover:text-yellow-300 cursor-pointer">favoritos</span>
+              <span className="hover:text-yellow-300 cursor-pointer">{t("favorites")}</span>
             </NavLink>
           </li>
           <li>

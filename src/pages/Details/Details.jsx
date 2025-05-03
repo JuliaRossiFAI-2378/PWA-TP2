@@ -4,10 +4,13 @@ import Background from "../../components/Background/Background";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import getPokemon from "../../services/getPokemon";
+import { useTranslation } from "react-i18next";
 
 const Details = () =>{
     const {id} = useParams();
     const [pokemon, setPokemon] = useState(null)
+    const {t} = useTranslation();
+
     useEffect(()=>{
         getPokemon({id}).then((result)=>{
             setPokemon(result)
@@ -16,28 +19,28 @@ const Details = () =>{
     return <div className="min-h-screen flex flex-col">
         <Header />
         <Background />
-        <div className="flex-row  w-full mx-auto border-x-2 ">
+        <div className="flex-grow flex-row  w-full mx-auto border-x-2 ">
             {pokemon != null ? 
             <>
             <div className="flex justify-center px-10">
                 <div className="mx-16 mt-10 basis-96">
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Nombre: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.name : "Cargando..."} </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Name")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.name : t("Loading...")} </span></p>
                     </div>
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Tipo: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.types.length===1 ? pokemon.types[0].type.name : pokemon.types[0].type.name + "/" + pokemon.types[1].type.name : "Cargando..."} </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Type")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.types.length===1 ? t(pokemon.types[0].type.name) : t(pokemon.types[0].type.name) + "/" + t(pokemon.types[1].type.name) : t("Loading...")} </span></p>
                     </div>
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Altura: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.height/10 : "Cargando..."}mts </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Height")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.height/10 : t("Loading...")}mts </span></p>
                     </div>
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Peso: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.weight/10 : "Cargando..."}kgs </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Weight")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.weight/10 : t("Loading...")}kgs </span></p>
                     </div>
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Habilidades: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.abilities.length===1 ? pokemon.abilities[0].ability.name : pokemon.abilities[1].is_hidden === true ? pokemon.abilities[0].ability.name : pokemon.abilities[0].ability.name + " / " + pokemon.abilities[1].ability.name : "Cargando..."} </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Abilities")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.abilities.length===1 ? t(pokemon.abilities[0].ability.name) : pokemon.abilities[1].is_hidden === true ? t(pokemon.abilities[0].ability.name) : t(pokemon.abilities[0].ability.name) + " / " + t(pokemon.abilities[1].ability.name) : t("Loading...")} </span></p>
                     </div>
                     <div className="mt-4">
-                        <p><span className="font-bold text-gray-700" >Habilidad Oculta: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.abilities.length>2 && pokemon.abilities[2].is_hidden === true ? pokemon.abilities[2].ability.name : pokemon.abilities.length>1 ? pokemon.abilities[1].is_hidden === true ? pokemon.abilities[1].ability.name : "No posee habilidad oculta" : "No posee habilidad oculta" : "Cargando..."} </span></p>
+                        <p><span className="font-bold text-gray-700" >{t("Hidden Ability")}: </span><span className="text-shadow-lg/20">{pokemon ? pokemon.abilities.length>2 && pokemon.abilities[2].is_hidden === true ? t(pokemon.abilities[2].ability.name) : pokemon.abilities.length>1 ? pokemon.abilities[1].is_hidden === true ? t(pokemon.abilities[1].ability.name) : t("none") : t("none") : t("Loading...")} </span></p>
                     </div>
                 </div>
                 <div className="mt-10 relative bg-gray-700 w-full md:min-w-xs mx-auto md:mx-2 lg:mx-2 lg:min-w-xs max-w-xs max-h-max shadow-lg shadow-sky-900 rounded-xl text-lg my-2">
@@ -47,12 +50,12 @@ const Details = () =>{
             </div>
             <div className="mx-80 py-1 mt-10 flex justify-evenly content-center shadow-lg shadow-sky-900 mb-4 bg-gray-700 rounded-md">                                                          
                 <div className="flex-col my- flex">
-                    <div className="flex-row text-blue-400 my-1">Puntos de salud:</div>
-                    <div className="flex-row text-blue-400 my-1">Ataque:</div>
-                    <div className="flex-row text-blue-400 my-1">Defensa:</div>
-                    <div className="flex-row text-blue-400 my-1">Ataque especial:</div>
-                    <div className="flex-row text-blue-400 my-1">Defensa especial:</div>
-                    <div className="flex-row text-blue-400 my-1">Velocidad:</div>  
+                    <div className="flex-row text-blue-400 my-1">{t("Health Points")}:</div>
+                    <div className="flex-row text-blue-400 my-1">{t("Attack")}:</div>
+                    <div className="flex-row text-blue-400 my-1">{t("Defense")}:</div>
+                    <div className="flex-row text-blue-400 my-1">{t("Special Attack")}:</div>
+                    <div className="flex-row text-blue-400 my-1">{t("Special Defense")}:</div>
+                    <div className="flex-row text-blue-400 my-1">{t("Speed")}:</div>  
                 </div>
                 <div className="flex-col flex">
                     <div className="flex-row my-1">
