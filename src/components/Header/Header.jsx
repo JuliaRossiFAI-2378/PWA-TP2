@@ -4,7 +4,8 @@ import { useTranslation, Trans } from "react-i18next";
 import i18n from "../../i18n.js";
 import logo from '../../assets/logo.svg'
 import logohover from '../../assets/logohover.svg'
-
+import { NavLink } from "react-router";
+import paths from '../../paths/paths.js'
 const Header = () => {
     //esto es super innecesario pero no me resisti
   const [scrolling, setScrolling] = useState(false);
@@ -35,11 +36,15 @@ const Header = () => {
           ? "bg-blue-300"
           : "bg-[rgba(122,204,247,0.2)]"}`}
     >
-      <img onMouseEnter={logoMouseEnter} onMouseLeave={logoMouseLeave} className="h-10 scale-200 origin-left overflow-visible select-none ml-0 sm:ml-4 md:ml-8 lg:ml-12 cursor-pointer" src={imagenLogo} />
+      <NavLink to={paths.home}>
+        <img onMouseEnter={logoMouseEnter} onMouseLeave={logoMouseLeave} className="h-10 scale-200 origin-left overflow-visible select-none ml-0 sm:ml-4 md:ml-8 lg:ml-12 cursor-pointer" src={imagenLogo} />
+      </NavLink>
       <nav className="text-xl">
         <ul className="flex space-x-4">
           <li>
-            <a className="hover:text-yellow-300 cursor-pointer">favoritos</a>
+            <NavLink to={paths.favorites}>
+              <span className="hover:text-yellow-300 cursor-pointer">favoritos</span>
+            </NavLink>
           </li>
           <li>
               <Idioma/>
