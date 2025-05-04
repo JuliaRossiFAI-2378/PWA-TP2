@@ -23,7 +23,6 @@ const Home = () =>{
         return paginas.slice(0, pagina - 1).reduce((a, b) => a + b, 0);
     };
     
-
     useEffect(() => {
         const fetchData = async () => {
             const limite = paginas[paginaActual - 1];
@@ -36,11 +35,7 @@ const Home = () =>{
         };
         fetchData();
     }, [paginaActual]);
-    
-    
 
-
- 
     useEffect(() => {
         if (busqueda === "") {
             setListaBusqueda(listaPokemon);
@@ -64,15 +59,16 @@ const Home = () =>{
                 <label className='text-stone-500 font-bold ml-1 select-none w-auto'>{t("Search")}: </label>
                 <input type='text' value={busqueda} onChange={(event) => setBusqueda(event.target.value)}  placeholder={ t ('Input a Pokename')} className='w-full h-9 ml-2 pl-1 text-slate-500 border-0 border-b-2 border-yellow-300 focus:border-gray-700 focus:outline-none transition-transform duration-300  text-center' />
             </div>
+            <Pagination paginas={paginas} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
             <div className="flex-grow flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row">
                 {listaBusqueda===null ? 
                 //le puse para que muestre el gif de carga en esos segundos de espera
                 //pero deberiamos ver bien que poner despues
                     <img src={loading}/> :  listaBusqueda.map(pokemon => (
-                        <Card key={pokemon.name} pokereferencia={pokemon?pokemon:null} />
+                        <Card key={pokemon.name} pokereferencia={pokemon?pokemon.name:null} />
                     )) }
             </div>
-            <Pagination paginas={paginas} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
+            
             <Footer />
         </div>)
 }        
