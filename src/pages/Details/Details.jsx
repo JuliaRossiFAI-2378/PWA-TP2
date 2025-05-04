@@ -6,17 +6,21 @@ import { useEffect, useState } from "react";
 import getPokemon from "../../services/getPokemon";
 import { useTranslation } from "react-i18next";
 import Favorite from "../../components/Favorite/Favorite";
-import errorImg from '../../assets/detailsad.svg'
 import paths from '../../paths/paths'
+import Button from "../../components/Button/Button";
+
 const Details = () =>{
     const {id} = useParams();
     const [pokemon, setPokemon] = useState(null)
     const {t} = useTranslation();
+    const [fallo, setFallo] = useState(false)
 
     useEffect(()=>{
-        getPokemon({id}).then((result)=>{
-            setPokemon(result)
-        })
+      getPokemon({id}).then((result)=>{
+          setPokemon(result)
+      })
+      const timer = setTimeout(() => setFallo(true), 3000);
+      return () => clearTimeout(timer);
     }, [])
     return <div className="min-h-screen flex flex-col">
         <Header />
@@ -184,16 +188,20 @@ const Details = () =>{
                 </div>
               </>
             ) : (
-              <div className="mx-auto mt-10 px-4 max-w-xl shadow-md shadow-sky-700/50 mb-6 bg-gray-700 rounded-md">
-                <div className="flex flex-row justify-evenly py-4">
-                  <img src={errorImg}/>
-                </div>
-                <NavLink to={paths.home}>
-                  <div className="flex justify-center py-3 border-1 ">
-                    Volver al inicio
+              fallo && (
+                <div className="flex flex-col items-center mx-auto mt-10 px-4 max-w-xl shadow-md shadow-sky-700/50 mb-6 border-4 bg-gray-700/50 border-yellow-300 rounded-md">
+                  <div className="flex justify-evenly py-4">
+                    <img src={t("/detailsad.svg")} />
                   </div>
-                </NavLink>
-              </div>
+                  <NavLink to={paths.home}>
+                    <Button
+                      texto={t("Go back")}
+                      estilo="bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer"
+                    />
+                  </NavLink>
+                </div>
+              )
+              
             )}
           </div>
         </div>

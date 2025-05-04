@@ -341,7 +341,10 @@
     "Documentation" : "Documentación",
     "Contact us" : "Contactános",
     "Street" : "Calle",
-    "Base Stats" : "Estadísticas Base"
+    "Base Stats" : "Estadísticas Base",
+    "/sad.svg" : "/triste.svg",
+    "/detailsad.svg" : "/detailtriste.svg",
+    "Go back" : "Volver Atras"
 
                       
                   
