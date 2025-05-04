@@ -1,12 +1,13 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Background from "../../components/Background/Background";
-import { useParams } from "react-router";
+import { NavLink, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import getPokemon from "../../services/getPokemon";
 import { useTranslation } from "react-i18next";
 import Favorite from "../../components/Favorite/Favorite";
-
+import errorImg from '../../assets/detailsad.svg'
+import paths from '../../paths/paths'
 const Details = () =>{
     const {id} = useParams();
     const [pokemon, setPokemon] = useState(null)
@@ -183,7 +184,16 @@ const Details = () =>{
                 </div>
               </>
             ) : (
-              "algo salio muy mal"
+              <div className="mx-auto mt-10 px-4 max-w-xl shadow-md shadow-sky-700/50 mb-6 bg-gray-700 rounded-md">
+                <div className="flex flex-row justify-evenly py-4">
+                  <img src={errorImg}/>
+                </div>
+                <NavLink to={paths.home}>
+                  <div className="flex justify-center py-3 border-1 ">
+                    Volver al inicio
+                  </div>
+                </NavLink>
+              </div>
             )}
           </div>
         </div>

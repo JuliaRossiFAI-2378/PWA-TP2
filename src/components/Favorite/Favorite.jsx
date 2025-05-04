@@ -8,6 +8,7 @@ const Favorite = ({pokeid}) =>{
 
     const HandleClickFavorito = () => {
         const favoritos = JSON.parse(localStorage.getItem("favoritos")) || {};
+        window.dispatchEvent(new CustomEvent("favoritoClick", { detail: pokeid }));
         if(esFavorito){
             delete favoritos[pokeid]
             setEsFavorito(false)
