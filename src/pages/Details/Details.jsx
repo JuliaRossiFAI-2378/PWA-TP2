@@ -19,7 +19,7 @@ const Details = () =>{
       getPokemon({id}).then((result)=>{
           setPokemon(result)
       })
-      const timer = setTimeout(() => setFallo(true), 3000);
+      const timer = setTimeout(() => setFallo(true), 2000);
       return () => clearTimeout(timer);
     }, [])
     return <div className="min-h-screen flex flex-col">
