@@ -7,6 +7,8 @@ import getAllPokemon from '../../services/getAllPokemon.js';
 import { useTranslation, Trans } from 'react-i18next';
 import i18n from '../../i18n.js';
 import loading from '../../assets/loading.gif'
+import Pagination from '../../components/Pagination/Pagination.jsx';
+
 
 
 const Home = () =>{
@@ -14,23 +16,47 @@ const Home = () =>{
     const [busqueda, setBusqueda] = useState("")
     const [listaBusqueda, setListaBusqueda] = useState(null)
     const { t } = useTranslation()
-    useEffect(()=>{
-        getAllPokemon().then((datos)=>{setListaPokemon(datos.results)})
-        //seteamos la lista de busqueda con todos los pokemons tambien, sino crashea
-        getAllPokemon().then((datos)=>{setListaBusqueda(datos.results)}) 
-    }, [])
+    const paginas = [151, 100, 135, 107, 156, 72, 88, 96, 120]; // 9 páginas
+    const [paginaActual, setPaginaActual] = useState(1);
+
+    const calcularOffset = (pagina) => {
+        return paginas.slice(0, pagina - 1).reduce((a, b) => a + b, 0);
+    };
+    
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const limite = paginas[paginaActual - 1];
+            const offset = calcularOffset(paginaActual);
+            const datos = await getAllPokemon(limite, offset);
+            if (datos) {
+                setListaPokemon(datos.results);
+                setListaBusqueda(datos.results);
+            }
+        };
+        fetchData();
+    }, [paginaActual]);
+    
+    
 
 
  
-    useEffect(()=>{
-        listaPokemon? setListaBusqueda(listaPokemon.filter(pokemon => {
-            return pokemon.name?.includes(busqueda) //filtramos la listapoke con el input de busqueda
-        })) : console.log("Cargando...") //esto solo pasa antes de que carguen las 2 listas
-    }, [busqueda])//se filtra cada vez que el input cambia
+    useEffect(() => {
+        if (busqueda === "") {
+            setListaBusqueda(listaPokemon);
+        } else {
+            setListaBusqueda(
+                listaPokemon?.filter(pokemon =>
+                    pokemon.name?.includes(busqueda.toLowerCase())
+                )
+            );
+        }
+    }, [busqueda, listaPokemon]);
+    
         
     
 
-    return(//mx-auto en el contenedor nos puede causar problemas con alineacion despues, tener en cuenta
+    return(
         <div className="min-h-screen flex flex-col">
         <Header />
         <Background />
@@ -41,11 +67,12 @@ const Home = () =>{
             <div className="flex-grow flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row">
                 {listaBusqueda===null ? 
                 //le puse para que muestre el gif de carga en esos segundos de espera
-                            //pero deberiamos ver bien que poner despues
+                //pero deberiamos ver bien que poner despues
                     <img src={loading}/> :  listaBusqueda.map(pokemon => (
                         <Card key={pokemon.name} pokereferencia={pokemon?pokemon:null} />
                     )) }
             </div>
+            <Pagination paginas={paginas} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
             <Footer />
         </div>)
 }        

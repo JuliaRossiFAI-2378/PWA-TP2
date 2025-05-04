@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import getPokemon from "../../services/getPokemon";
 import { useTranslation } from "react-i18next";
+import Favorite from "../../components/Favorite/Favorite";
 
 const Details = () =>{
     const {id} = useParams();
@@ -106,6 +107,7 @@ const Details = () =>{
                       className="w-64 h-64 p-3"
                       src={pokemon.sprites.other.home.front_default}
                     />
+                    <Favorite pokeid={pokemon.id} />
                     <img
                       className="absolute bottom-0 right-0 p-3"
                       src={pokemon.sprites.other.showdown.front_default}
