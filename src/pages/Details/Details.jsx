@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import getPokemon from "../../services/getPokemon";
 import { useTranslation } from "react-i18next";
 import Favorite from "../../components/Favorite/Favorite";
-import paths from '../../paths/paths'
+import paths from '../../paths/paths';
 import Button from "../../components/Button/Button";
 
 const Details = () =>{
