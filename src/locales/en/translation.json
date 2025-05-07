@@ -344,7 +344,7 @@
     "/sad.svg" : "/sad.svg",
     "/detailsad.svg" : "/detailsad.svg",
     "Go back" : "Go back",
-    "/favsad.svg": "/favsad.svg"
-    
-      
+    "/favsad.svg": "/favsad.svg",
+    "/sad404.svg": "/sad404.svg",
+    "Home": "Home"
 }

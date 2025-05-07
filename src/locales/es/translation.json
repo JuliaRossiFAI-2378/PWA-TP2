@@ -345,12 +345,7 @@
     "/sad.svg" : "/triste.svg",
     "/detailsad.svg" : "/detailtriste.svg",
     "Go back" : "Volver Atras",
-    "/favsad.svg": "/favtriste.svg"
-                      
-                  
-                  
-              
-              
-          
-          
+    "/favsad.svg": "/favtriste.svg",
+    "/sad404.svg": "/triste404.svg",
+    "Home": "Inicio"
 }

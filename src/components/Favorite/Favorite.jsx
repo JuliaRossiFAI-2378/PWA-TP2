@@ -1,6 +1,6 @@
 import favorito from '../../assets/favorito.png'
 import favoritono from '../../assets/favoritono.png'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const Favorite = ({pokeid}) =>{
     const [esFavorito, setEsFavorito] = useState(!!JSON.parse(localStorage.getItem("favoritos"))?.[pokeid]);

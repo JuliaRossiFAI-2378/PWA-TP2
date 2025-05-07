@@ -30,8 +30,7 @@ Otras funcionalidades: <br/>
 
 ## Demo
 
-https://pwa-tp-2-nine.vercel.app/
-La navegación externa a la pagina (ya sea por f5 o cambiando el enlace) no funciona en el demo, pero si en la version real.<br/>
+https://pwa-tp-2-nine.vercel.app/ <br/>
 Creemos que esto cumple y supera el proposito de incluir capturas de pantalla
 
 ## Decisiones Relevantes
