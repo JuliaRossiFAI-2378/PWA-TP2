@@ -1,4 +1,4 @@
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import whatsapp from '../../assets/whatsapp-48.png'
 import linkedin from '../../assets/linkedin-48.png'
 import github from '../../assets/github-50.png'
@@ -47,7 +47,6 @@ const Footer = () => {
             
 
           </div>
-          {/* Línea inferior */}
           <div className="border-t border-blue-300 mt-6 pt-4 text-xs text-center">
             Trabajo Práctico 2 - Programacion Web Avanzada {new Date().getFullYear()}
           </div>

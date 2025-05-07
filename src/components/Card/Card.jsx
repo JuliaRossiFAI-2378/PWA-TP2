@@ -3,7 +3,6 @@ import loading from '../../assets/loading.gif'
 import Button from '../Button/Button.jsx'
 import getPokemon from "../../services/getPokemon.js";
 import { NavLink } from "react-router";
-import paths from "../../paths/paths.js";
 import { useTranslation } from "react-i18next";
 import Favorite from "../Favorite/Favorite.jsx";
 
@@ -57,7 +56,7 @@ const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
             <p><span className="font-bold text-gray-700" >{t("Weight")}: </span><span className="text-shadow-lg/20" >{pokemon ? pokemon.weight /10+"kgs" : t("Loading...")} </span></p>
         </div>
         <NavLink to={`/Details/${pokemon ? pokemon.id : '' }`}>
-            <Button texto={t("More Info")} estilo={pokemon?"bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer": "invisible"}  />
+            <Button texto={t("More Info")} estilo={pokemon?"": " invisible "}  />
         </NavLink>
     </div>)
 

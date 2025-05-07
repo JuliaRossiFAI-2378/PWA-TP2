@@ -37,7 +37,6 @@ const Details = () =>{
     return <div className="min-h-screen flex flex-col">
         <Header />
         <Background />
-        <div className="min-h-screen flex flex-col">
           <div className="flex-grow w-full mx-auto">
             {pokemon != null ? (
               <>
@@ -66,16 +65,14 @@ const Details = () =>{
                   <NavLink to={paths.home}>
                     <Button
                       texto={t("Go back")}
-                      estilo="bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer"
                     />
                   </NavLink>
                 </div>
               )
             )}
           </div>
+          <Footer />
         </div>
-        <Footer />
-    </div>
     ;
 }
 export default Details;

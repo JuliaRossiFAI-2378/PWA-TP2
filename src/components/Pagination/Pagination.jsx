@@ -1,6 +1,5 @@
 import estrella from '../../assets/favoritono.png'
 import estrellasi from '../../assets/favorito.png'
-import Button from '../Button/Button.jsx'
 
 const Pagination = ({ paginas, paginaActual, setPaginaActual }) => {
     return (

@@ -23,11 +23,12 @@ const Home = () =>{
     }, []);
     
 
-    return(//mx-auto en el contenedor nos puede causar problemas con alineacion despues, tener en cuenta
+    return(
         <div className="min-h-screen flex flex-col">
         <Header />
         <Background />
-            <div className="flex-grow flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row">
+            <div className='flex-grow' >
+            <div className="flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row">
                 {
                     storage===null || Object.values(JSON.parse(localStorage.getItem("favoritos"))).length === 0 ? 
                     <div className="flex flex-col items-center mx-auto mt-10 px-4 max-w-xl shadow-md shadow-sky-700/50 mb-6 border-4 bg-gray-700/50 border-yellow-300 rounded-md">
@@ -37,7 +38,6 @@ const Home = () =>{
                         <NavLink to={paths.home}>
                         <Button
                             texto={t("Go back")}
-                            estilo="bg-gray-700 block mx-auto p-2 m-2 rounded-md shadow-md transform transition-all duration-400 hover:bg-yellow-300 hover:text-gray-700 cursor-pointer"
                         />
                         </NavLink>
                     </div> : pokeId.map(favId => (
@@ -45,7 +45,9 @@ const Home = () =>{
                     ))
                 }
             </div>
+            </div>
             <Footer />
-        </div>)
+        </div>
+    )
 };
 export default Home;
