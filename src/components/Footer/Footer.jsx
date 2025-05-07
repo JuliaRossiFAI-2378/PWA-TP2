@@ -16,7 +16,7 @@ const Footer = () => {
                 <a href="#">
                   <img src={whatsapp} className="w-6 h-6" />
                 </a>
-                <a href="#">
+                <a href="https://github.com/JuliaRossiFAI-2378/PWA-TP2/">
                   <img src={github} className="w-6 h-6" />
                 </a>
                 <a href="#">
@@ -28,17 +28,17 @@ const Footer = () => {
             <div>
               <h5 className="text-lg font-semibold mb-2">{t("Resources")}</h5>
               <ul className="space-y-1 text-sm">
-                <li><a href="#" className="hover:text-yellow-400">{t("API")}</a></li>
-                <li><a href="#" className="hover:text-yellow-400">{t("Documentation")}</a></li>
+                <li><a href="https://pokeapi.co" className="hover:text-yellow-400">{t("API")}</a></li>
+                <li><a href="https://pokeapi.co/docs/v2" className="hover:text-yellow-400">{t("Documentation")}</a></li>
               </ul>
             </div>
 
             <div>
               <h5 className="text-lg font-semibold mb-2">{t("Contact us")}</h5>
               <ul className="space-y-1 text-sm">
-                <li><a href="#" className="hover:text-yellow-400">{t("Street")} Siempreviva 123, Neuquén Capital, Q8300, Argentina</a></li>
-                <li><a href="#" className="hover:text-yellow-400">+54 299 123-4567</a></li>
-                <li><a href="#" className="hover:text-yellow-400">correo@superlegit.gov</a></li>
+                <li><span>{t("Street")} Siempreviva 123, Neuquén Capital, Q8300, Argentina</span></li>
+                <li><span>+54 299 123-4567</span></li>
+                <li><span>correo@superlegit.gov</span></li>
               </ul>
             </div>
 
