@@ -1,12 +1,41 @@
-# React + Vite
+# TP 2 - Grupo Piedra
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Integrantes del grupo
 
-Currently, two official plugins are available:
+FAI-2378 Rossi Julia <br/>
+FAI-2948 Lores Federico <br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Dominio
+Elegimos [pokeapi](https://pokeapi.co) como nuestra API.</br>
+Se puede encontrar la documentacion [aquí](https://pokeapi.co/docs/v2)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Descripción básica de la aplicación 
+
+La app es un gestor personal de pokemones, los cuales se pueden marcar o desmarcar como favoritos.<br/><br/>
+Otras funcionalidades: <br/>
+- Paginación (sin scroll infinito)<br/>
+- Se puede cambiar el idioma en cualquier momento y afecta todo (incluyendo información recibida de la API)<br/>
+- Resolución casi completamente responsive (a excepcion de la resolución mas pequeña para telefonos)
+
+## Instalacion
+
+1.Clonar el repositorio<br>
+2.Utilizar el comando "npm install -D vite"<br>
+3.Utilizar el comando "npm install tailwindcss @tailwindcss/vite"
+4.Utilizar el comando "npm install react-i18next i18next --save"
+4.Utilizar el comando "npm i react-router"
+3.Listo para ejecutar con "npm run dev"<br>
+
+## Demo
+
+https://pwa-tp-2-nine.vercel.app/
+La navegación externa a la pagina (ya sea por f5 o cambiando el enlace) no funciona en el demo, pero si en la version real.
+Creemos que esto cumple y supera el proposito de incluir capturas de pantalla
+
+## Decisiones Relevantes
+Algo notable de la API es que no posee un endpoint con un array que contenga todos los pokemones, por lo cual debemos hacer fetch individual para cada uno.</br>
+Ya que tenemos que hacer fetch individual para cada pokemon, decidimos paginar por generaciones pokemon, con un aproximado de 120 pokemon por pagina. Por lo cual la búsqueda solo revisa por página. Entendemos que una posible solución es tener un fetch secundario de todos los pokemon, pero cada uno pesa mas de un mb y son 1025. También consideramos que la busqueda revise un array con todos los pokemon (el cual ya tenemos), pero no logramos utilizar eso manteniendo la busqueda dinamica (que se actualizen los pokemon en la pagina apenas se escribe).</br>
+Al definir la ruta de las imagenes pokemon agregamos Math.random() como parametro al final de la ruta, esto es necesario para evitar que el navegador utilize la version cacheada de la imagen (la cual puede ser una carga fallida)
+Se nos dijo en clases que la cache se borra al recargar la pagina pero entre nuestra experiencia personal y una pequeña investigación quedamos en que no lo hace, puede borrar algo de la cache, pero no toda, para eso existen las recargas forzadas (generalmente realizadas con ctrl+f5). En caso de dudas, probar eliminar esos parametros agregados muestra que las imagenes a veces no cargan, pero el navegador las considera cargadas por lo que no se dispara onError.
