@@ -5,11 +5,8 @@ import Background from '../../components/Background/Background.jsx';
 import Card from '../../components/Card/Card.jsx'
 import getAllPokemon from '../../services/getAllPokemon.js';
 import { useTranslation, Trans } from 'react-i18next';
-import i18n from '../../i18n.js';
 import loading from '../../assets/loading.gif'
 import Pagination from '../../components/Pagination/Pagination.jsx';
-
-
 
 const Home = () =>{
     const [listaPokemon, setListaPokemon] = useState(null);
@@ -48,9 +45,6 @@ const Home = () =>{
         }
     }, [busqueda, listaPokemon]);
     
-        
-    
-
     return(
         <div className="min-h-screen flex flex-col">
         <Header />
@@ -61,16 +55,15 @@ const Home = () =>{
             </div>
             <Pagination paginas={paginas} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
             <div className="flex-grow flex-wrap justify-center max-w-9/10 w-full mx-auto flex flex-col md:flex-row lg:flex-row">
-                {listaBusqueda===null ? 
-                //le puse para que muestre el gif de carga en esos segundos de espera
-                //pero deberiamos ver bien que poner despues
-                    <img src={loading}/> :  listaBusqueda.map(pokemon => (
+                {listaBusqueda===null ? <img src={loading}/> 
+                    : listaBusqueda.map(pokemon => (
                         <Card key={pokemon.name} pokereferencia={pokemon?pokemon.name:null} />
-                    )) }
+                    ))
+                }
             </div>
-            
             <Footer />
-        </div>)
+        </div>
+    )
 }        
 ;
 export default Home;

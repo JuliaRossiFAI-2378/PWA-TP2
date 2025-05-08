@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Idioma.module.css";
 import { useTranslation } from "react-i18next";
-import i18n from "../../i18n";
+import i18n from "../../i18n"; //se muestra como que no se usa pero si lo borras explota la pagina
 
 const Idioma = () => {
   const [language, setLanguage] = useState(localStorage.getItem("idioma") || "en");
   const [checked, setChecked] = useState(language === "es");
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const handleChange = () => {
     setLanguage(language === "es" ? "en" : "es");

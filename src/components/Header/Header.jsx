@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Idioma from '../Idioma/Idioma.jsx'
-import { useTranslation, Trans } from "react-i18next";
-import i18n from "../../i18n.js";
+import { useTranslation } from "react-i18next";
 import logo from '../../assets/logo.svg'
 import logohover from '../../assets/logohover.svg'
 import { NavLink } from "react-router";
@@ -10,6 +9,7 @@ const Header = () => {
     //esto es super innecesario pero no me resisti
   const [scrolling, setScrolling] = useState(false);
   const [imagenLogo, setImagenLogo] = useState(logo);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -18,7 +18,6 @@ const Header = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  const { t } = useTranslation();
 
   const logoMouseEnter = () =>{
     setImagenLogo(logohover)
@@ -26,8 +25,6 @@ const Header = () => {
   const logoMouseLeave = () =>{
     setImagenLogo(logo)
   }
-
-
 
   return (
     <div

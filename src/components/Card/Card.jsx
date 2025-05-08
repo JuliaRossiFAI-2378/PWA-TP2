@@ -9,38 +9,16 @@ import Favorite from "../Favorite/Favorite.jsx";
 const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
     const [pokemon, setPokemon] = useState(null);
     const [imagen, setImagen] = useState(true);
-    const [esFavorito, setEsFavorito] = useState(null);
-    const [desactivarHover, setDesactivarHover] = useState(false);
     const {t} = useTranslation();
 
     const HandleCargaFallida = () => {
         setImagen(false)
     }
 
-    const HandleClickFavorito = () => {
-        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || {};
-        if(esFavorito){
-            delete favoritos[pokemon.id]
-            setEsFavorito(false)
-        }else{
-            favoritos[pokemon.id] = pokemon.id
-            setEsFavorito(true)
-        }
-        localStorage.setItem("favoritos", JSON.stringify(favoritos));
-        setDesactivarHover(true);
-        setTimeout(() => {//es esto o desactivarlo con mouseenter y leave y no me da el alma para eso
-            setDesactivarHover(false);
-        }, 600); 
-    }
-
-
     useEffect(()=>{
         const id = pokereferencia;
         getPokemon({id}).then((datos)=>{setPokemon(datos)})
     }, [])
-
-
-
 
     return(<div className="relative hover:-translate-y-4 shadow-md w-full md:min-w-xs mx-auto md:mx-2 lg:mx-2 lg:min-w-xs max-w-xs max-h-max border-4 border-gray-700 bg-[rgba(147,197,253,0.8)] rounded-xl text-lg my-2 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-sky-900">
         <div>
@@ -59,9 +37,5 @@ const Card = ({pokereferencia}) => {//recibimos obj conteniendo name y url
             <Button texto={t("More Info")} estilo={pokemon?"": " invisible "}  />
         </NavLink>
     </div>)
-
 }
-    
-
-
 export default Card;
